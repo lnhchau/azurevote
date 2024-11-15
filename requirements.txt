@@ -2,10 +2,3 @@ Flask==1.1.2
 opencensus-ext-azure==1.0.4
 opencensus-ext-flask==0.7.3
 redis==3.5.3
-opencensus==0.7.13
-opencensus-ext-logging==0.1.0
-Jinja2==3.0.3
-itsdangerous==2.0.1
-werkzeug==2.0.3
-six==1.14.0
-google-api-core>=1.16.0,<2.0  # This should help resolve the google-api-core issue
