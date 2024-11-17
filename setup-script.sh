@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-resourceGroup="rg15"
+resourceGroup="rg1700"
 location="westus2"
 osType="Ubuntu2204"
 vmssName="vmss-chau"
