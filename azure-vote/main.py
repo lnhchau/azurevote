@@ -25,17 +25,17 @@ app = Flask(__name__)
 
 # Logging
 logger = logging.getLogger(__name__)
-logger.addHandler(AzureLogHandler(connection_string='InstrumentationKey=1cd70924-6907-4603-8db9-218ff35cc814'))
+logger.addHandler(AzureLogHandler(connection_string='InstrumentationKey=ebeb912c-ba67-4275-aafe-c709140783ff'))
 
 # Metrics
 exporter = metrics_exporter.new_metrics_exporter(
     enable_standard_metrics=True,
-    connection_string='InstrumentationKey=1cd70924-6907-4603-8db9-218ff35cc814'
+    connection_string='InstrumentationKey=ebeb912c-ba67-4275-aafe-c709140783ff'
 )
 # Tracing
 tracer = Tracer(
     exporter = AzureExporter(
-        connection_string = 'InstrumentationKey=1cd70924-6907-4603-8db9-218ff35cc814'),
+        connection_string = 'InstrumentationKey=ebeb912c-ba67-4275-aafe-c709140783ff'),
     sampler = ProbabilitySampler(1.0),
 )
 app = Flask(__name__)
@@ -43,7 +43,7 @@ app = Flask(__name__)
 # Requests
 middleware = FlaskMiddleware(
     app,
-    exporter=AzureExporter(connection_string='InstrumentationKey=1cd70924-6907-4603-8db9-218ff35cc814'),
+    exporter=AzureExporter(connection_string='InstrumentationKey=ebeb912c-ba67-4275-aafe-c709140783ff'),
     sampler=ProbabilitySampler(rate=1.0),
 )
 
