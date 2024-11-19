@@ -178,15 +178,15 @@ def index():
 
             # Get current values
             vote1 = r.get(button1).decode("utf-8")
-            properties = {"custom_dimensions": {"Cats Vote": vote1}}
+            # properties = {"custom_dimensions": {"Cats Vote": vote1}}
             # TODO: use logger object to log cat vote
-            logger.info("Cats Vote", extra=properties)
+            # logger.info("Cats Vote", extra=properties)
             print("ELSE, Cats Vote: " + vote1)
 
             vote2 = r.get(button2).decode("utf-8")
-            properties = {"custom_dimensions": {"Dogs Vote": vote2}}
+            # properties = {"custom_dimensions": {"Dogs Vote": vote2}}
             # TODO: use logger object to log dog vote
-            logger.info("Dogs Vote", extra=properties)
+            # logger.info("Dogs Vote", extra=properties)
             print("ELSE, Dogs Vote: " + vote2)
 
             # Return results
@@ -202,7 +202,7 @@ def index():
 
 if __name__ == "__main__":
     # comment line below when deploying to VMSS
-    app.run()  # local
+    # app.run()  # local
     # uncomment the line below before deployment to VMSS
-    #app.run(host="0.0.0.0", threaded=True, debug=True)  # remote
-    # app.run(host='0.0.0.0', threaded=True, debug=True, port=5000) # remote
+    # app.run(host="0.0.0.0", threaded=True, debug=True)  
+    app.run(host='0.0.0.0', threaded=True, debug=True, port=5000) 

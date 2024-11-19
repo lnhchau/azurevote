@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-resourceGroup="rg1000"
+resourceGroup="rg1400"
 clusterName="cluster-chau"
 
 # Install aks cli
