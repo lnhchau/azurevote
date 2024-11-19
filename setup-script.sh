@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-resourceGroup="rg1700"
+resourceGroup="rg1400"
 location="westus2"
 osType="Ubuntu2204"
 vmssName="vmss-chau"
@@ -21,25 +21,6 @@ storageType="Standard_LRS"
 # This command will not work for the Cloud Lab users. 
 # Cloud Lab users can comment this command and 
 # use the existing Resource group name, such as, resourceGroup="cloud-demo-153430" 
-echo "STEP 0 - Creating resource group $resourceGroup..."
-
-az group create \
---name $resourceGroup \
---location $location \
---verbose
-
-echo "Resource group created: $resourceGroup"
-
-# Create Storage account
-echo "STEP 1 - Creating storage account $storageAccount"
-
-az storage account create \
---name $storageAccount \
---resource-group $resourceGroup \
---location $location \
---sku Standard_LRS
-
-echo "Storage account created: $storageAccount"
 
 # Create Network Security Group
 echo "STEP 2 - Creating network security group $nsgName"
