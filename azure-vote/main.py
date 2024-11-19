@@ -1,11 +1,12 @@
-from flask import Flask, request, render_template
+import logging
 import os
 import random
-import redis
 import socket
 import sys
-import logging
 from datetime import datetime
+
+import redis
+from flask import Flask, render_template, request
 
 # App Insights
 # TODO: Import required libraries for App Insights
@@ -31,14 +32,14 @@ config_integration.trace_integrations(["requests"])
 # Logging
 logger = logging.getLogger(__name__)
 handler = AzureLogHandler(
-    connection_string="InstrumentationKey=ebeb912c-ba67-4275-aafe-c709140783ff"
+    connection_string="InstrumentationKey=adfe6a13-be68-4f5d-bf49-dab5f2b2598d"
 )
 handler.setFormatter(logging.Formatter("%(traceId)s %(spanId)s %(message)s"))
 logger.addHandler(handler)
 # Logging custom Events
 logger.addHandler(
     AzureEventHandler(
-        connection_string="InstrumentationKey=ebeb912c-ba67-4275-aafe-c709140783ff"
+        connection_string="InstrumentationKey=adfe6a13-be68-4f5d-bf49-dab5f2b2598d"
     )
 )
 # Set the logging level
@@ -47,14 +48,14 @@ logger.setLevel(logging.INFO)
 # Metrics
 exporter = metrics_exporter.new_metrics_exporter(
     enable_standard_metrics=True,
-    connection_string="InstrumentationKey=ebeb912c-ba67-4275-aafe-c709140783ff",
+    connection_string="InstrumentationKey=adfe6a13-be68-4f5d-bf49-dab5f2b2598d",
 )
 view_manager.register_exporter(exporter)
 
 # Tracing
 tracer = Tracer(
     exporter=AzureExporter(
-        connection_string="InstrumentationKey=ebeb912c-ba67-4275-aafe-c709140783ff"
+        connection_string="InstrumentationKey=adfe6a13-be68-4f5d-bf49-dab5f2b2598d"
     ),
     sampler=ProbabilitySampler(1.0),
 )
@@ -65,7 +66,7 @@ app = Flask(__name__)
 middleware = FlaskMiddleware(
     app,
     exporter=AzureExporter(
-        connection_string="InstrumentationKey=ebeb912c-ba67-4275-aafe-c709140783ff"
+        connection_string="InstrumentationKey=adfe6a13-be68-4f5d-bf49-dab5f2b2598d"
     ),
     sampler=ProbabilitySampler(rate=1.0),
 )
@@ -113,9 +114,9 @@ if app.config["SHOWHOST"] == "true":
     title = socket.gethostname()
 
 # Init Redis
-if not r.get(button1):
+if not r.exists(button1):
     r.set(button1, 0)
-if not r.get(button2):
+if not r.exists(button2):
     r.set(button2, 0)
 
 
@@ -153,11 +154,13 @@ def index():
             properties = {"custom_dimensions": {"Cats Vote": vote1}}
             # TODO: use logger object to log cat vote
             logger.info("Cats Vote", extra=properties)
+            print("ELIF, Cats Vote: " + vote1)
 
             vote2 = r.get(button2).decode("utf-8")
             properties = {"custom_dimensions": {"Dogs Vote": vote2}}
             # TODO: use logger object to log dog vote
             logger.info("Dogs Vote", extra=properties)
+            print("ELIF, Dogs Vote: " + vote2)
 
             return render_template(
                 "index.html",
@@ -175,14 +178,16 @@ def index():
 
             # Get current values
             vote1 = r.get(button1).decode("utf-8")
-            #properties = {"custom_dimensions": {"Cats Vote": vote1}}
+            properties = {"custom_dimensions": {"Cats Vote": vote1}}
             # TODO: use logger object to log cat vote
-            #logger.info("Cats Vote", extra=properties)
+            logger.info("Cats Vote", extra=properties)
+            print("ELSE, Cats Vote: " + vote1)
 
             vote2 = r.get(button2).decode("utf-8")
-            #properties = {"custom_dimensions": {"Dogs Vote": vote2}}
+            properties = {"custom_dimensions": {"Dogs Vote": vote2}}
             # TODO: use logger object to log dog vote
-            #logger.info("Dogs Vote", extra=properties)
+            logger.info("Dogs Vote", extra=properties)
+            print("ELSE, Dogs Vote: " + vote2)
 
             # Return results
             return render_template(
