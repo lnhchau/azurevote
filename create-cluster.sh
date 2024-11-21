@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Variables
-resourceGroup="rg2100"
-clusterName="cluster-chau"
+resourceGroup="rg2000"
+clusterName="udacity-cluster"
 
 # Install aks cli
 echo "Installing AKS CLI"
 
-sudo az aks install-cli
+az aks install-cli
 
 echo "AKS CLI installed"
 
