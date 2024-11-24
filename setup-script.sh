@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-resourceGroup="rg2000"
+resourceGroup="rg24"
 location="westus2"
 osType="Ubuntu2204"
 vmssName="udacity-vmss"
@@ -109,9 +109,9 @@ az network lb rule create \
   --lb-name $lbName \
   --probe-name $probeName \
   --backend-pool-name $bePoolName \
-  --backend-port 80 \
+  --backend-port 8080 \
   --frontend-ip-name loadBalancerFrontEnd \
-  --frontend-port 80 \
+  --frontend-port 8080 \
   --protocol tcp \
   --verbose
 
