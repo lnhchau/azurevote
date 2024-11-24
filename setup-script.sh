@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-resourceGroup="rg24"
+resourceGroup="rg25"
 location="westus2"
 osType="Ubuntu2204"
 vmssName="udacity-vmss"
