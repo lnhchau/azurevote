@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-resourceGroup="rg25"
+resourceGroup="rg26"
 clusterName="udacity-cluster"
 
 # Install aks cli

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-resourceGroup="rg25"
+resourceGroup="rg26"
 location="westus2"
 osType="Ubuntu2204"
 vmssName="udacity-vmss"
@@ -50,6 +50,15 @@ az network nsg create \
   --verbose
 
 echo "Network security group created: $nsgName"
+
+# # Create Virtual Network
+# echo "STEP 3 - Creating virtual network $vnetName..."
+# az network vnet create \
+#   --resource-group $resourceGroup \
+#   --name $vnetName \
+#   --subnet-name $subnetName \
+#   --verbose || error_exit "Failed to create virtual network $vnetName"
+# echo "Virtual network created: $vnetName"
 
 # Create VM Scale Set
 echo "STEP 3 - Creating VM scale set $vmssName"
@@ -113,8 +122,10 @@ az network lb rule create \
   --frontend-ip-name loadBalancerFrontEnd \
   --frontend-port 8080 \
   --protocol tcp \
-  --verbose
-
+  --verbose 
+  # --idle-timeout 4 \
+  # --enable-tcp-reset true \
+  
 echo "Network load balancer rule created: $lbRule"
 
 # Add port 80 to inbound rule NSG
