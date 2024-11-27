@@ -16,7 +16,7 @@ import adal
 
 import azure.mgmt.compute.v2019_12_01.operations.VirtualMachineScaleSetVMsOperations
 
-resource_group = "rg26"
+resource_group = "rg27"
 vmss_name = "udacity-vmss"
 
 # Returns a credential based on an Azure Automation RunAs connection dictionary
