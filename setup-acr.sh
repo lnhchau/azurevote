@@ -1,4 +1,4 @@
-resourceGroup="rg26"
+resourceGroup="rg27"
 region="westeurope"
 myAcrName="myacr202106"
 clusterName="udacity-cluster"
