@@ -1,5 +1,5 @@
-resourceGroup="rg30"
-region="westeurope"
+resourceGroup="rg31"
+region="westus2"
 myAcrName="myacr202106"
 clusterName="udacity-cluster"
 
